@@ -1,0 +1,4 @@
+.JobsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
