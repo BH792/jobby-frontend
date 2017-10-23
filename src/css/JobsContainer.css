@@ -2,3 +2,51 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.JobsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "watching applied interviewed offer";
+}
+
+.JobsGrid > div > div:first-child {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 16pt;
+}
+
+.JobsGridWatching {
+  grid-area: watching;
+  border: solid thin lightgrey;
+}
+
+.JobsGridWatching > div:first-child {
+  background-color: #edc0c2;
+}
+
+.JobsGridApplied {
+  grid-area: applied;
+  border: solid thin lightgrey;
+}
+
+.JobsGridApplied > div:first-child {
+  background-color: #f2e2c3;
+}
+
+.JobsGridInterviewed {
+  grid-area: interviewed;
+  border: solid thin lightgrey;
+}
+
+.JobsGridInterviewed > div:first-child {
+  background-color: #e8ecc1;
+}
+
+.JobsGridOffer {
+  grid-area: offer;
+  border: solid thin lightgrey;
+}
+
+.JobsGridOffer > div:first-child {
+  background-color: #dbe6b3;
+}

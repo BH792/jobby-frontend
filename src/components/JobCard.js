@@ -1,22 +1,39 @@
 import React, { Component } from 'react';
-import styles from '../css/JobCard.css'
+import styles from '../css/JobCard.css';
+import PropTypes from 'prop-types';
+import { DragSource } from 'react-dnd';
+import { ItemTypes } from '../constants/Constants';
+
+const cardSource = {
+  beginDrag(props, monitor, component) {
+    return { id: props.job.id }
+  }
+}
+
+const collect = (connect, monitor) => {
+  return {
+    connectDragSource: connect.dragSource()
+  }
+}
 
 class JobCard extends Component {
   render() {
-    return (
+    const { job, connectDragSource } = this.props
+
+    return connectDragSource(
       <div className={styles.JobCard}>
         <div className={styles.JobCardHeader}>
-          <h4>{this.props.job.title}</h4>
-          <p>{this.props.job.company.name}</p>
+          <h4>{job.title}</h4>
+          <p>{job.company.name}</p>
         </div>
-        <p>{this.props.job.status}</p>
-        <p>Contacts:</p>
+        <center><p>{job.status}</p></center>
+        {/* <p>Contacts:</p>
         <ul>
-          {this.props.job.contacts.map(contact => <li key={contact.id}>{contact.name}</li>)}
-        </ul>
+          {job.contacts.map(contact => <li key={contact.id}>{contact.name}</li>)}
+        </ul> */}
       </div>
     )
   }
 }
 
-export default JobCard;
+export default DragSource(ItemTypes.CARD, cardSource, collect)(JobCard);
