@@ -17,7 +17,38 @@ class App extends Component {
         if (job.id === id) {
           job.status = status
         }
-        return job 
+        return job
+      })
+    })
+  }
+
+  changeJobRank = (dragRank, hoverRank, status) => {
+    console.log(dragRank, hoverRank, status);
+    this.setState({
+      jobs: this.state.jobs.map(job => {
+        if (job.status === status) {
+
+          if (job.rank === dragRank) {
+            job.rank = hoverRank
+            return job
+          }
+
+          if (dragRank < hoverRank) {
+
+            if (job.rank > dragRank && job.rank <= hoverRank) {
+              job.rank -= 1
+            }
+
+          } else {
+
+            if (job.rank < dragRank && job.rank >= hoverRank) {
+              job.rank += 1
+            }
+
+          }
+        }
+
+        return job
       })
     })
   }
@@ -28,6 +59,7 @@ class App extends Component {
         <JobsContainer
           jobs={this.state.jobs}
           changeJobStatus={this.changeJobStatus}
+          changeJobRank={this.changeJobRank}
         />
       </div>
     );

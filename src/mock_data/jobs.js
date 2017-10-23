@@ -1,6 +1,7 @@
 const jobs = [
   {
     id: 1,
+    rank: 1,
     title: "Front-end Developer",
     url: "https://www.google.com",
     status: "watching",
@@ -29,6 +30,7 @@ const jobs = [
   },
   {
     id: 2,
+    rank: 0,
     title: "Back-end Developer",
     url: "https://www.google.com",
     status: "applied",
@@ -57,12 +59,13 @@ const jobs = [
   },
   {
     id: 3,
+    rank: 0,
     title: "Python Developer",
     url: "https://www.google.com",
-    status: "Microsoft",
+    status: "watching",
     active: true,
     company: {
-      name: "Some Company",
+      name: "Microsoft",
       url: "https://www.google.com",
       industry: "Technology"
     },
@@ -85,6 +88,7 @@ const jobs = [
   },
   {
     id: 4,
+    rank: 0,
     title: "Javascript Developer",
     url: "https://www.google.com",
     status: "offer",
@@ -113,6 +117,7 @@ const jobs = [
   },
   {
     id: 5,
+    rank: 1,
     title: "Back-end Developer",
     url: "https://www.google.com",
     status: "applied",
@@ -141,6 +146,7 @@ const jobs = [
   },
   {
     id: 6,
+    rank: 0,
     title: "Python Developer",
     url: "https://www.google.com",
     status: "interviewed",
@@ -169,6 +175,7 @@ const jobs = [
   },
   {
     id: 7,
+    rank: 1,
     title: "Javascript Developer",
     url: "https://www.google.com",
     status: "offer",
@@ -197,10 +204,11 @@ const jobs = [
   },
   {
     id: 8,
+    rank: 4,
     title: "Front-end Developer",
     url: "https://www.google.com",
     status: "watching",
-    active: false,
+    active: true,
     company: {
       name: "Vornado",
       url: "https://www.google.com",
@@ -225,6 +233,7 @@ const jobs = [
   },
   {
     id: 9,
+    rank: 2,
     title: "Front-end Developer",
     url: "https://www.google.com",
     status: "watching",
@@ -253,6 +262,7 @@ const jobs = [
   },
   {
     id: 10,
+    rank: 3,
     title: "Front-end Developer",
     url: "https://www.google.com",
     status: "watching",

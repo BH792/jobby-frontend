@@ -1,5 +1,4 @@
 import React, { Component } from  'react';
-import JobCard from './JobCard'
 import JobColumn from './JobColumn'
 import styles from '../css/JobsContainer.css'
 
@@ -24,7 +23,6 @@ class JobsContainer extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log(nextProps);
     this.setState({
       filteredJobs: this.separateByJobStatus(nextProps.jobs)
     })
@@ -52,45 +50,19 @@ class JobsContainer extends Component {
       <div className={styles.JobsContainer}>
         <div className={styles.JobsGrid}>
 
-          <JobColumn
-            changeJobStatus={this.props.changeJobStatus}
-            styleClass={'JobsGridWatching'}
-            title={'Watching'}
-          >
-            {this.state.filteredJobs.watching.map(job => {
-              return <JobCard job={job} key={job.id}/>
-            })}
-          </JobColumn>
-
-          <JobColumn
-            changeJobStatus={this.props.changeJobStatus}
-            styleClass={'JobsGridApplied'}
-            title={'Applied'}
-          >
-            {this.state.filteredJobs.applied.map(job => {
-              return <JobCard job={job} key={job.id}/>
-            })}
-          </JobColumn>
-
-          <JobColumn
-            changeJobStatus={this.props.changeJobStatus}
-            styleClass={'JobsGridInterviewed'}
-            title={'Interviewed'}
-          >
-            {this.state.filteredJobs.interviewed.map(job => {
-              return <JobCard job={job} key={job.id}/>
-            })}
-          </JobColumn>
-
-          <JobColumn
-            changeJobStatus={this.props.changeJobStatus}
-            styleClass={'JobsGridOffer'}
-            title={'Offer'}
-          >
-            {this.state.filteredJobs.offer.map(job => {
-              return <JobCard job={job} key={job.id}/>
-            })}
-          </JobColumn>
+          {Object.keys(this.state.filteredJobs).map(column => {
+            const status = column.slice(0,1).toUpperCase() + column.slice(1)
+            return (
+              <JobColumn
+                key={column}
+                changeJobStatus={this.props.changeJobStatus}
+                changeJobRank={this.props.changeJobRank}
+                styleClass={`JobsGrid${status}`}
+                title={status}
+                jobsList={this.state.filteredJobs[column]}
+              />
+            )
+          })}
 
         </div>
       </div>
