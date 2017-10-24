@@ -1,0 +1,52 @@
+.NewJob {
+  width: 300px;
+  text-align: center;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.Error {
+  margin: 0 auto;
+  width: 250px;
+  height: 30px;
+  padding: 2px;
+  background-color: rgba(255, 0, 0, 0.3);
+  display: table;
+}
+
+.ErrorMessage {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+}
+
+.NewJob form {
+  padding: 10px;
+  margin: 10px;
+}
+
+.NewJob input[type="text"] {
+  width: 250px;
+  height: 40px;
+  padding: 2px;
+  margin: 3px;
+}
+
+.NewJob select {
+  width: 250px;
+  height: 40px;
+  margin: 3px;
+}
+
+input[type="submit"] {
+  -webkit-appearance: none;
+  width: 250px;
+  height: 40px;
+  margin: 5px;
+  margin-top: 10px;
+  background: #00aa66;
+  color: white;
+  border-color: #00aa66;
+  border-style: solid;
+  border-radius: 3px;
+  font-size: 16px;
+}

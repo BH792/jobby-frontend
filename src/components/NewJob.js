@@ -1,12 +1,12 @@
 import React from "react";
+import styles from "../css/NewJob.css";
 
 class NewJob extends React.Component {
   state = {
     title: "",
     company: "",
     status: "watching",
-    contact: "",
-    contacts: []
+    valid: true
   };
 
   onChange = event => {
@@ -17,73 +17,67 @@ class NewJob extends React.Component {
 
   addContact = event => {
     event.preventDefault();
-    const Contact = this.state.contact;
-    this.setState({
-      contacts: [...this.state.contacts, Contact],
-      contact: ""
-    });
+    const contact = this.state.contact;
+    if (contact !== "") {
+      this.setState({
+        contacts: [...this.state.contacts, contact],
+        contact: ""
+      });
+    }
   };
 
   submitNewJob = e => {
     e.preventDefault();
-    this.props.closeModal();
     let job = {
       title: this.state.title,
-      url: "https://www.google.com",
       status: this.state.status,
       active: true,
       company: { name: this.state.company }
     };
-    this.props.addJob(job);
+    if (job.title === "" || job.status === "" || job.company.name === "") {
+      this.setState({ valid: false });
+    } else {
+      this.props.closeModal();
+      this.props.addJob(job);
+    }
   };
 
   render() {
     return (
-      <div>
+      <div className={styles.NewJob}>
         <form id="jobform" onSubmit={this.submitNewJob}>
-          <label>
-            Job Title:
-            <input
-              type="text"
-              name="title"
-              onChange={this.onChange}
-              value={this.state.title}
-            />
-          </label>
-          <br />
-          <label>
-            Company:
-            <input
-              type="input"
-              name="company"
-              onChange={this.onChange}
-              value={this.state.company}
-            />
-          </label>
-          <br />
-          Status:<select
-            name="status"
-            value={this.state.status}
+          {this.state.valid ? null : (
+            <div className={styles.Error}>
+              <div className={styles.ErrorMessage}>Invalid Entry</div>
+            </div>
+          )}
+          <input
+            type="text"
+            name="title"
             onChange={this.onChange}
-          >
+            value={this.state.title}
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            name="company"
+            onChange={this.onChange}
+            value={this.state.company}
+            placeholder="Company"
+          />
+          <br />
+          <select name="status" onChange={this.onChange}>
+            <option selected disabled>
+              Select Status
+            </option>
             <option value="watching">Watching</option>
             <option value="applied">Applied</option>
             <option value="interviewed">Interviewed</option>
             <option value="offer">Offer</option>
           </select>
-          <label>
-            <br />
-            Add Contact<input
-              type="email"
-              name="contact"
-              onChange={this.onChange}
-              value={this.state.contact}
-            />
-          </label>
-          <button onClick={this.addContact}>Add Contact</button>
-          {this.state.contacts ? this.state.contacts.join(", ") : null}
           <br />
-          <input type="submit" value="Add Job" />
+
+          <input type="submit" value="Add Job" id="addJob" />
         </form>
       </div>
     );

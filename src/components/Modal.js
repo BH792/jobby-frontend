@@ -1,10 +1,9 @@
 import React from "react";
-import NewJob from "./NewJob";
 
 class Modal extends React.Component {
   close = e => {
     e.preventDefault();
-    this.props.onClose();
+    this.props.toggleModal();
   };
 
   render() {
@@ -16,7 +15,8 @@ class Modal extends React.Component {
       left: "50%",
       transform: "translate(-50%, -50%)",
       zIndex: "9999",
-      background: "#fff"
+      background: "#fff",
+      "text-align": "center"
     };
 
     let backdropStyle = {
@@ -32,11 +32,20 @@ class Modal extends React.Component {
     return (
       <div className="Modal">
         <div style={modalStyle}>
-          <button style={{ float: "right" }} onClick={this.close}>
+          <button style={{ float: "right" }} onClick={this.props.toggleModal}>
             X
           </button>
-          <h4>Add New Job</h4>
-          <NewJob addJob={this.props.addJob} closeModal={this.props.onClose} />
+          {this.props.header ? (
+            <h4
+              style={{
+                "margin-bottom": "0",
+                "margin-top": "20px"
+              }}
+            >
+              {this.props.header}
+            </h4>
+          ) : null}
+          {this.props.children}
         </div>
         <div style={backdropStyle} onClick={this.close} />
       </div>
