@@ -11,6 +11,36 @@ class App extends Component {
     jobs: Jobs
   }
 
+  moveJob = (id, curStatus, newStatus, dragRank, hoverRank) => {
+    console.log(
+    '\nid: ', id,
+    '\ncurStatus: ', curStatus,
+    '\nnewStatus: ', newStatus,
+    '\ndragRank: ', dragRank,
+    '\nhoverRank: ', hoverRank);
+    this.setState((prevState) => {
+      return {
+        jobs: prevState.jobs.map(job => {
+          if (job.rank === dragRank) {
+            job.rank = hoverRank
+            job.status = newStatus
+            return job
+          }
+          if (dragRank < hoverRank) {
+            if (job.rank > dragRank && job.rank <= hoverRank) {
+              job.rank -= 1
+            }
+          } else {
+            if (job.rank < dragRank && job.rank >= hoverRank) {
+              job.rank += 1
+            }
+          }
+          return job
+        })
+      }
+    })
+  }
+
   changeJobStatus = (id, status) => {
     this.setState({
       jobs: this.state.jobs.map(job => {
@@ -23,28 +53,22 @@ class App extends Component {
   }
 
   changeJobRank = (dragRank, hoverRank, status) => {
-    console.log(dragRank, hoverRank, status);
+
     this.setState({
       jobs: this.state.jobs.map(job => {
         if (job.status === status) {
-
           if (job.rank === dragRank) {
             job.rank = hoverRank
             return job
           }
-
           if (dragRank < hoverRank) {
-
             if (job.rank > dragRank && job.rank <= hoverRank) {
               job.rank -= 1
             }
-
           } else {
-
             if (job.rank < dragRank && job.rank >= hoverRank) {
               job.rank += 1
             }
-
           }
         }
 
@@ -60,6 +84,7 @@ class App extends Component {
           jobs={this.state.jobs}
           changeJobStatus={this.changeJobStatus}
           changeJobRank={this.changeJobRank}
+          moveJob={this.moveJob}
         />
       </div>
     );

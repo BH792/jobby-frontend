@@ -5,13 +5,13 @@
   margin: 10px;
 }
 
-.JobCard:hover {
+/*.JobCard:hover {
   border: solid thin blueviolet;
 }
 
 .JobCard:hover .JobCardHeader{
   background-color: blueviolet;
-}
+}*/
 
 .JobCardHeader {
   background-color: grey;

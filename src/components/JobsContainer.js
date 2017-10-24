@@ -60,6 +60,7 @@ class JobsContainer extends Component {
                 styleClass={`JobsGrid${status}`}
                 title={status}
                 jobsList={this.state.filteredJobs[column]}
+                moveJob={this.props.moveJob}
               />
             )
           })}

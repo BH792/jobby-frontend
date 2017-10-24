@@ -9,7 +9,20 @@ const cardSource = {
   beginDrag(props, monitor, component) {
     return {
       id: props.job.id,
-      rank: props.job.rank
+      rank: props.job.rank,
+      status: props.job.status
+    }
+  },
+  endDrag(props, monitor, component) {
+    if (monitor.getDropResult()) {
+      const {
+        id,
+        curStatus,
+        newStatus,
+        dragRank,
+        hoverRank
+      } = monitor.getDropResult()
+      props.moveJob(id, curStatus, newStatus, dragRank, hoverRank)
     }
   }
 }
@@ -17,11 +30,15 @@ const cardSource = {
 const dragCollect = (connect, monitor) => {
   return {
     connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
   }
 }
 
 const cardTarget = {
   // hover(props, monitor, component) {
+  //   const id = monitor.getItem().id
+  //   const curStatus = monitor.getItem().status
+  //   const newStatus = props.job.status
   //   const dragRank = monitor.getItem().rank
   //   const hoverRank = props.job.rank
   //
@@ -50,27 +67,28 @@ const cardTarget = {
 	// 	if (dragRank > hoverRank && hoverClientY > hoverMiddleY) {
 	// 		return
 	// 	}
-  //
-  //   props.changeJobRank(dragRank, hoverRank, props.job.status)
+  //   props.moveJob(id, curStatus, newStatus, dragRank, hoverRank)
+  //   // props.changeJobRank(dragRank, hoverRank, props.job.status)
   //   monitor.getItem().rank = hoverRank
   // },
-  canDrop(props, monitor) {
-    console.log('canDrop');
-    const dragRank = monitor.getItem().rank
-    const hoverRank = props.job.rank
-
-    if (dragRank === hoverRank) {
-      return false
-    } else {
-      return true
-    }
-  },
+  // canDrop(props, monitor) {
+  //   const dragRank = monitor.getItem().rank
+  //   const hoverRank = props.job.rank
+  //
+  //   if (dragRank === hoverRank) {
+  //     return false
+  //   } else {
+  //     return true
+  //   }
+  // },
   drop(props, monitor, component) {
-    console.log("drop");
-    const dragRank = monitor.getItem().rank
-    const hoverRank = props.job.rank
-
-    props.changeJobRank(dragRank, hoverRank, props.job.status)
+    return {
+      id: monitor.getItem().id,
+      curStatus: monitor.getItem().status,
+      newStatus: props.job.status,
+      dragRank: monitor.getItem().rank,
+      hoverRank: props.job.rank
+    }
   }
 }
 
@@ -81,13 +99,40 @@ const dropCollect = (connect, monitor) => {
 }
 
 class JobCard extends Component {
-  render() {
-    const { job, connectDragSource, connectDropTarget } = this.props
+  color = (num) => {
+    switch (num) {
+      case 0:
+        return 'BurlyWood';
+      case 1:
+        return 'Salmon';
+      case 2:
+        return 'CornflowerBlue';
+      case 3:
+        return 'DarkRed';
+      case 4:
+        return 'DarkViolet';
+      case 5:
+        return 'GoldenRod';
+      case 6:
+        return 'Green';
+      case 7:
+        return 'Indigo';
+      case 8:
+        return 'LightGrey';
+      case 9:
+        return 'Olive';
+      default:
+        return 'black';
+    }
+  }
 
+  render() {
+    const { job, connectDragSource, connectDropTarget, isDragging } = this.props
+    const opacity = isDragging ? 0 : 1
     return connectDragSource(
       connectDropTarget(
-        <div className={styles.JobCard}>
-          <div className={styles.JobCardHeader}>
+        <div className={styles.JobCard} style={{opacity: opacity}}>
+          <div className={styles.JobCardHeader} style={{backgroundColor: this.color(job.id)}}>
             <h4>{job.title}</h4>
             <p>{job.company.name}</p>
           </div>

@@ -2,7 +2,7 @@ const jobs = [
   {
     id: 1,
     rank: 1,
-    title: "Front-end Developer",
+    title: "React Developer",
     url: "https://www.google.com",
     status: "watching",
     active: true,
@@ -30,8 +30,8 @@ const jobs = [
   },
   {
     id: 2,
-    rank: 0,
-    title: "Back-end Developer",
+    rank: 5,
+    title: "Ruby on Rails Developer",
     url: "https://www.google.com",
     status: "applied",
     active: true,
@@ -60,7 +60,7 @@ const jobs = [
   {
     id: 3,
     rank: 0,
-    title: "Python Developer",
+    title: "Cloud Engineer",
     url: "https://www.google.com",
     status: "watching",
     active: true,
@@ -88,8 +88,8 @@ const jobs = [
   },
   {
     id: 4,
-    rank: 0,
-    title: "Javascript Developer",
+    rank: 8,
+    title: "Nodejs Developer",
     url: "https://www.google.com",
     status: "offer",
     active: true,
@@ -117,8 +117,8 @@ const jobs = [
   },
   {
     id: 5,
-    rank: 1,
-    title: "Back-end Developer",
+    rank: 6,
+    title: "Java Developer",
     url: "https://www.google.com",
     status: "applied",
     active: true,
@@ -146,7 +146,7 @@ const jobs = [
   },
   {
     id: 6,
-    rank: 0,
+    rank: 7,
     title: "Python Developer",
     url: "https://www.google.com",
     status: "interviewed",
@@ -175,8 +175,8 @@ const jobs = [
   },
   {
     id: 7,
-    rank: 1,
-    title: "Javascript Developer",
+    rank: 9,
+    title: "Angular Developer",
     url: "https://www.google.com",
     status: "offer",
     active: true,
