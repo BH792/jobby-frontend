@@ -100,30 +100,8 @@ const dropCollect = (connect, monitor) => {
 
 class JobCard extends Component {
   color = (num) => {
-    switch (num) {
-      case 0:
-        return 'BurlyWood';
-      case 1:
-        return 'Salmon';
-      case 2:
-        return 'CornflowerBlue';
-      case 3:
-        return 'DarkRed';
-      case 4:
-        return 'DarkViolet';
-      case 5:
-        return 'GoldenRod';
-      case 6:
-        return 'Green';
-      case 7:
-        return 'Indigo';
-      case 8:
-        return 'LightGrey';
-      case 9:
-        return 'Olive';
-      default:
-        return 'black';
-    }
+    let colors = ['BurlyWood','Salmon','CornflowerBlue', 'DarkRed','DarkViolet','GoldenRod','Green','Indigo','LightGrey','Olive']
+    return colors[num]
   }
 
   render() {

@@ -1,7 +1,7 @@
 const jobs = [
   {
     id: 1,
-    rank: 1,
+    rank: 10,
     title: "React Developer",
     url: "https://www.google.com",
     status: "watching",
@@ -30,7 +30,7 @@ const jobs = [
   },
   {
     id: 2,
-    rank: 5,
+    rank: 15,
     title: "Ruby on Rails Developer",
     url: "https://www.google.com",
     status: "applied",
@@ -88,7 +88,7 @@ const jobs = [
   },
   {
     id: 4,
-    rank: 8,
+    rank: 2,
     title: "Nodejs Developer",
     url: "https://www.google.com",
     status: "offer",
@@ -117,7 +117,7 @@ const jobs = [
   },
   {
     id: 5,
-    rank: 6,
+    rank: 61,
     title: "Java Developer",
     url: "https://www.google.com",
     status: "applied",
@@ -146,7 +146,7 @@ const jobs = [
   },
   {
     id: 6,
-    rank: 7,
+    rank: 87,
     title: "Python Developer",
     url: "https://www.google.com",
     status: "interviewed",
@@ -233,7 +233,7 @@ const jobs = [
   },
   {
     id: 9,
-    rank: 2,
+    rank: 25,
     title: "Front-end Developer",
     url: "https://www.google.com",
     status: "watching",

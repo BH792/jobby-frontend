@@ -22,7 +22,7 @@ const cardColumnTarget = {
     if (hoverRank < dragRank) {
       hoverRank ++
     }
-    
+
     return {
       id: monitor.getItem().id,
       curStatus: monitor.getItem().status,
